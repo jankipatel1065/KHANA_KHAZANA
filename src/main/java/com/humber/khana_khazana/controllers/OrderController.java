@@ -90,6 +90,7 @@ public class OrderController {
         return "viewOrder";
     }
 
+    //add items
     @PostMapping("/addItems")
     public String addItemToOrder(@ModelAttribute Item item) {
         // Retrieve the order and product from the database
