@@ -1,21 +1,47 @@
 package com.humber.khana_khazana.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
 @Entity
-@Table(name = "roles")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name="role")
 public class Role {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @Column(nullable = false,unique = true)
-    @NotEmpty
-    private String name;
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String role;
+
+    public Role(String role) {
+        this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+
 }

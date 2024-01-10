@@ -2,11 +2,11 @@ package com.humber.khana_khazana.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.*;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.*;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

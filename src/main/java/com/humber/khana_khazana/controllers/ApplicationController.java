@@ -4,7 +4,7 @@ import com.humber.khana_khazana.models.*;
 import com.humber.khana_khazana.repositories.CategoryRepo;
 import com.humber.khana_khazana.service.*;
 //import com.humber.khana_khazana.service.OrderService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;

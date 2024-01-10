@@ -1,6 +1,6 @@
 package com.humber.khana_khazana.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -34,12 +34,7 @@ public class Order {
     @Column(name = "TOTAL_PRICE")
     private double totalPrice;
 
-
-
-
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Item> items=new HashSet<>();
-
-
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Item> items = new HashSet<>();
 
 }

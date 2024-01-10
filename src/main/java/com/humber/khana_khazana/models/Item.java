@@ -1,7 +1,7 @@
 package com.humber.khana_khazana.models;
 
-import jakarta.persistence.*;
-import jakarta.persistence.Table;
+import javax.persistence.*;
+import javax.persistence.Table;
 import lombok.*;
 import lombok.Setter;
 

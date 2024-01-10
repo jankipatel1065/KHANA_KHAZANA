@@ -1,43 +1,96 @@
 package com.humber.khana_khazana.models;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Data
-@Table(name="users")
+@Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    @NotEmpty
-    @Column(nullable = false)
-    private String firstName;
-    private String lastName;
-    @Column(nullable = false,unique = true)
-    @Email(message = "{errors.invalid_email}")
+    private int id;
+
+    private String name;
+
+
+
     private String email;
+
     private String password;
-    @ManyToMany(cascade=CascadeType.MERGE, fetch = FetchType.EAGER)
+
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "users_role", joinColumns = @JoinColumn(name = "cust_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id") )
+//    Set<Role> roles = new HashSet<Role>();
+//@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//@JoinTable(name = "users_role",
+//        joinColumns = @JoinColumn(name = "cust_id", referencedColumnName = "id"),
+//        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+//Set<Role> roles = new HashSet<Role>();
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-            name="user_role",
-            joinColumns={@JoinColumn(name = "USER_ID",referencedColumnName = "ID")},
-            inverseJoinColumns={@JoinColumn (name = "ROLE_ID",referencedColumnName = "ID")}
+            name = "users_role",
+            joinColumns = @JoinColumn(name = "cust_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
-    public User(User user) {
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.roles = user.getRoles();
+
+    public int getId() {
+        return id;
     }
-    public User(){
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Set<Role> getRole() {
+        return roles;
+    }
+
+    public void setRole(Role role) {
+        this.roles.add(role);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public void setRoles(Set<Role> roles) {
+       // this.roles.clear();  // Clear existing roles
+        if (roles != null) {
+            this.roles.addAll(roles);
+        }
     }
 }
